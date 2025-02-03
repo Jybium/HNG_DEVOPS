@@ -16,8 +16,8 @@ const isPrime = (n) => {
 };
 
 const isArmstrong = (n) => {
-    const digits = n.toString().split('').map(Number);
-    return digits.reduce((acc, digit) => acc + Math.pow(digit, digits.length), 0) === n;
+    const digits = Math.abs(n).toString().split('').map(Number);
+    return digits.reduce((acc, digit) => acc + Math.pow(digit, digits.length), 0) === Math.abs(n);
 };
 
 const isPerfect = (n) => {
@@ -39,7 +39,7 @@ app.get('/api/classify-number', async (req, res) => {
     }
 
     const num = parseInt(number);
-    const digitSum = num.toString().split('').reduce((acc, digit) => acc + Number(digit), 0);
+    const digitSum = Math.abs(num).toString().split('').reduce((acc, digit) => acc + Number(digit), 0);
 
     let properties = [];
     if (isArmstrong(num)) properties.push('armstrong');
